@@ -11,6 +11,9 @@ $(document).ready(function() {
 		
 		// You can forward any incoming feedback to an email
 		// Keep empty not to. Only a single email is allowed.
+		// Note: If you don't receive email sent to a generic
+		// address like feedback@example.com, contact help@planbox.com
+		// to have it whitelisted.
 		forwardEmail: '',
 		
 		// The button appears center-left by default. Modify in CSS.
