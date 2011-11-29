@@ -1,0 +1,47 @@
+Widget you can embed on your site to capture user feedback.
+Saves the User Feedback in Planbox.
+Instructions: http://www.planbox.com/help/user_feedback
+
+Features of this widget:
+- Supports any localization simply by settings options in the feedback.js file.
+- Style it any way you want by modifying the CSS file feedback.css.
+- Lazy loads after your website.
+
+OPTIONS
+Set these directly in feedback.js.
+You can also change them via global object FeedbackOptions.
+
+	// You can find your Planbox initiative token on the Manage page
+	// Instructions: http://www.planbox.com/help/user_feedback
+	planboxToken: '<TOKEN>',
+	
+	// You can forward any incoming feedback to an email
+	// Keep empty not to. Only a single email is allowed.
+	forwardEmail: '',
+	
+	// The button appears center-left by default. Modify in CSS.
+	// It is an image you can modify here.
+	buttonImageSrc: protocol+'://www.planbox.com/img/feedback_button.png',
+	buttonImageAlt: 'Feedback',
+	buttonTooltip: 'Send us Feedback',
+	
+	// When you click on the button it opens a dialog
+	dialogTitle: 'User Feedback',
+	dialogCloseTooltip: 'Close dialog',
+	dialogEmailLabel: 'Your email',
+	dialogFeedbackLabel: 'Your feedback',
+	dialogCancelText: 'Cancel',
+	dialogSubmitText: 'Submit',
+	
+	// You can prefill the email
+	dialogEmail: '',
+	
+	// When the user clicks on Submit, do some validation
+	// and tell the user what's happening
+	emailIsRequired: true,
+	emailInvalidError: 'Please provide a valid email',
+	feedbackMissingError: 'Please type in feedback',
+	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
+	feedbackAjaxError: 'There was an error.'
+
+	
