@@ -13,6 +13,12 @@ $(document).ready(function() {
 		// Keep empty not to. Only a single email is allowed.
 		forwardEmail: '',
 		
+		// You can set the page URL. If empty will use window.location.href
+		pageUrl: '',
+		
+		// You can specify a human readable page title
+		pageTitle: '',
+		
 		// The button appears center-left by default. Modify in CSS.
 		// It is an image you can modify here.
 		buttonImageSrc: protocol+'://www.planbox.com/img/feedback_button.png',
@@ -168,7 +174,9 @@ $(document).ready(function() {
 				token: options.planboxToken,
 				feedback: feedback,
 				user_email: email,
-				forward_email: options.forwardEmail
+				forward_email: options.forwardEmail,
+				page_title: (options.pageTitle && options.pageTitle.length)?options.pageTitle:'',
+				page_url: (options.pageUrl && options.pageUrl.length)?options.pageUrl:window.location.href
 				}, function(data) {
 					if (data && data.code) {
 						if (data.code == 'ok') {
