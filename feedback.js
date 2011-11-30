@@ -7,7 +7,7 @@ $(document).ready(function() {
 	var options = {
 		// You can find your Planbox initiative token on the Manage page
 		// Instructions: http://www.planbox.com/help/user_feedback
-		planboxToken: '<TOKEN'>,
+		planboxToken: '<TOKEN>',
 		
 		// You can forward any incoming feedback to an email
 		// Keep empty not to. Only a single email is allowed.
