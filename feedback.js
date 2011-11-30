@@ -1,55 +1,54 @@
-$(document).ready(function() {
-	
-	// Determine the protocol
-	var protocol = ('https:' == document.location.protocol ? 'https' : 'http');
 
-	// *** PRESET OPTIONS HERE ***
-	var options = {
-		// You can find your Planbox initiative token on the Manage page
-		// Instructions: http://www.planbox.com/help/user_feedback
-		planboxToken: '<TOKEN>',
-		
-		// You can forward any incoming feedback to an email
-		// Keep empty not to. Only a single email is allowed.
-		forwardEmail: '',
-		
-		// You can set the page URL. If empty will use window.location.href
-		pageUrl: '',
-		
-		// You can specify a human readable page title
-		pageTitle: '',
-		
-		// The button appears center-left by default. Modify in CSS.
-		// It is an image you can modify here.
-		buttonImageSrc: protocol+'://www.planbox.com/img/feedback_button.png',
-		buttonImageAlt: 'Feedback',
-		buttonTooltip: 'Send us Feedback',
-		
-		// When you click on the button it opens a dialog
-		dialogTitle: 'User Feedback',
-		dialogCloseTooltip: 'Close dialog',
-		dialogEmailLabel: 'Your email',
-		dialogFeedbackLabel: 'Your feedback',
-		dialogCancelText: 'Cancel',
-		dialogSubmitText: 'Submit',
-		
-		// You can prefill the email
-		dialogEmail: '',
-		
-		// When the user clicks on Submit, do some validation
-		// and tell the user what's happening
-		emailIsRequired: true,
-		emailInvalidError: 'Please provide a valid email',
-		feedbackMissingError: 'Please type in feedback',
-		feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
-		feedbackAjaxError: 'There was an error.'
-	};
+// *** PRESET OPTIONS HERE ***
+FeedbackOptions = {
+	// You can find your Planbox initiative token on the Manage page
+	// Instructions: http://www.planbox.com/help/user_feedback
+	planboxToken: '<TOKEN>',
 	
-	// *** CHANGE OPTIONS AFTER ***
-	// Make options available as a global variable so you
-	// can modify any option on the fly. For example
-	// this prefills the email input:
-	//   window.FeedbackOptions.dialogEmail = 'john@example.com';
+	// You can forward any incoming feedback to an email
+	// Keep empty not to. Only a single email is allowed.
+	forwardEmail: '',
+	
+	// You can set the page URL. If empty will use window.location.href
+	pageUrl: '',
+	
+	// You can specify a human readable page title
+	pageTitle: '',
+	
+	// The button appears center-left by default. Modify in CSS.
+	// It is an image you can modify here.
+	buttonImageSrc: document.location.protocol+'//www.planbox.com/img/feedback_button.png',
+	buttonImageAlt: 'Feedback',
+	buttonTooltip: 'Send us Feedback',
+	
+	// When you click on the button it opens a dialog
+	dialogTitle: 'User Feedback',
+	dialogCloseTooltip: 'Close dialog',
+	dialogEmailLabel: 'Your email',
+	dialogFeedbackLabel: 'Your feedback',
+	dialogCancelText: 'Cancel',
+	dialogSubmitText: 'Submit',
+	
+	// You can prefill the email
+	dialogEmail: '',
+	
+	// When the user clicks on Submit, do some validation
+	// and tell the user what's happening
+	emailIsRequired: true,
+	emailInvalidError: 'Please provide a valid email',
+	feedbackMissingError: 'Please type in feedback',
+	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
+	feedbackAjaxError: 'There was an error.'
+};
+
+// *** CHANGE OPTIONS AFTER ***
+// You can access FeedbackOptions after. For example
+// this sets the email input:
+//   window.FeedbackOptions.dialogEmail = 'john@example.com';
+
+$(document).ready(function() {
+	var options = window.FeedbackOptions;
+	
 	window.FeedbackOptions = options;
 	
 	// Create the button and hide it
@@ -170,7 +169,7 @@ $(document).ready(function() {
 			}
 			
 			// Send the feedback
-			$.post(protocol+'://www.planbox.com/api/feedback', {
+			$.post(document.location.protocol+'//www.planbox.com/api/feedback', {
 				token: options.planboxToken,
 				feedback: feedback,
 				user_email: email,
@@ -198,7 +197,7 @@ $(document).ready(function() {
 		var buttons_em = $('<div class="buttons"></div>').appendTo(dialog_em);
 		
 		// Powered by Planbox
-		$('<a class="powered_by_planbox" href="http://www.planbox.com" target="_blank"><img src="'+protocol+'://www.planbox.com/img/powered_by_planbox.png" alt="Powered by Planbox" /></a>').appendTo(buttons_em);
+		$('<a class="powered_by_planbox" href="http://www.planbox.com" target="_blank"><img src="'+document.location.protocol+'//www.planbox.com/img/powered_by_planbox.png" alt="Powered by Planbox" /></a>').appendTo(buttons_em);
 		
 		// Apply button
 		var apply_em = $('<a class="fr button apply" href="#" tabindex="'+(tabindex+2)+'">'+options.dialogSubmitText+'</a>').appendTo(buttons_em);
