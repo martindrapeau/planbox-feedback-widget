@@ -26,6 +26,12 @@ You can also change them via global object FeedbackOptions.
 	// You can forward any incoming feedback to an email
 	// Keep empty not to. Only a single email is allowed.
 	forwardEmail: '',
+		
+	// You can set the page URL. If empty will use window.location.href
+	pageUrl: '',
+	
+	// You can specify a human readable page title
+	pageTitle: '',
 	
 	// The button appears center-left by default. Modify in CSS.
 	// It is an image you can modify here.
