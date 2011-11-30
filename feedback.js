@@ -7,13 +7,10 @@ $(document).ready(function() {
 	var options = {
 		// You can find your Planbox initiative token on the Manage page
 		// Instructions: http://www.planbox.com/help/user_feedback
-		planboxToken: '<TOKEN>',
+		planboxToken: '<TOKEN'>,
 		
 		// You can forward any incoming feedback to an email
 		// Keep empty not to. Only a single email is allowed.
-		// Note: If you don't receive email sent to a generic
-		// address like feedback@example.com, contact help@planbox.com
-		// to have it whitelisted.
 		forwardEmail: '',
 		
 		// The button appears center-left by default. Modify in CSS.
@@ -167,17 +164,23 @@ $(document).ready(function() {
 			}
 			
 			// Send the feedback
-			Planbox.feedback({
-				feedback: feedback, 
+			$.post(protocol+'://www.planbox.com/api/feedback', {
+				token: options.planboxToken,
+				feedback: feedback,
 				user_email: email,
-				forward_email: options.forwardEmail,
-				onsuccess: function(message) {
-					ajax_em.addClass('ok').html(options.feedbackAjaxSuccess);
-				},
-				onerror: function(message) {
-					ajax_em.addClass('error').html(options.feedbackAjaxError+' '+message);
-				}
-			});
+				forward_email: options.forwardEmail
+				}, function(data) {
+					if (data && data.code) {
+						if (data.code == 'ok') {
+							ajax_em.addClass('ok').html(options.feedbackAjaxSuccess);
+						} else  {
+							ajax_em.addClass('error').html(options.feedbackAjaxError+' '+message);
+						}
+					} else {
+						ajax_em.addClass('error').html(options.feedbackAjaxError);
+					}
+				}, 'json'
+			);
 			
 			return false;
 		};
@@ -228,16 +231,10 @@ $(document).ready(function() {
 			}
 			return true;
 		});
-			
+		
 		return false;
 	});
 	
-	// Lazy load Planbox JS library and show the button after.
-	// This ensures we don't block our site in the remote case
-	// we cannot reach Planbox.
-	$.getScript(protocol+'://www.planbox.com/js/planbox.js', function() {
-		Planbox.init({token:options.planboxToken});
-		button_em.show();
-	});
-	
+	// Show the button
+	button_em.show();
 });
