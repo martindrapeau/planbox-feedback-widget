@@ -168,8 +168,8 @@ $(document).ready(function() {
 				return false;
 			}
 			
-			// Send the feedback
-			$.post(document.location.protocol+'//www.planbox.com/api/feedback', {
+			// Send the feedback using JSONP to avoid cross domain scripting issues
+			$.getJSON(document.location.protocol+'//www.planbox.com/api/feedback?callback=?', {
 				token: options.planboxToken,
 				feedback: feedback,
 				user_email: email,
@@ -186,7 +186,7 @@ $(document).ready(function() {
 					} else {
 						ajax_em.addClass('error').html(options.feedbackAjaxError);
 					}
-				}, 'json'
+				}
 			);
 			
 			return false;
