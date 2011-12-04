@@ -1,4 +1,3 @@
-
 // *** PRESET OPTIONS HERE ***
 FeedbackOptions = {
 	// You can find your Planbox initiative token on the Manage page
@@ -46,7 +45,8 @@ FeedbackOptions = {
 // this sets the email input:
 //   window.FeedbackOptions.dialogEmail = 'john@example.com';
 
-$(document).ready(function() {
+jQuery(document).ready(function() {
+	var $ = jQuery;
 	var options = window.FeedbackOptions;
 	
 	window.FeedbackOptions = options;
