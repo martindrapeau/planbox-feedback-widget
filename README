@@ -61,6 +61,7 @@ OPTIONS
   dialogFeedbackLabel: 'Your feedback',
   dialogCancelText: 'Cancel',
   dialogSubmitText: 'Submit',
+  dialogCloseText: 'Close',
   
   // You can prefill the email
   dialogEmail: '',
