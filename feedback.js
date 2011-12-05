@@ -124,7 +124,15 @@ jQuery(document).ready(function() {
 		// AJAX message
 		var ajax_em = $('<p class="ajax">&nbsp;</p>').appendTo(content_em);
 		
+		// Button pane
+		var buttons_em = $('<div class="buttons"></div>').appendTo(dialog_em);
+		
+		// Powered by Planbox
+		$('<a class="powered_by_planbox" href="http://www.planbox.com" target="_blank"><img src="'+document.location.protocol+'//www.planbox.com/img/powered_by_planbox.png" alt="Powered by Planbox" /></a>').appendTo(buttons_em);
 
+		var apply_em = $('<a class="fr button apply" href="#" tabindex="'+(tabindex+2)+'">'+options.dialogSubmitText+'</a>').appendTo(buttons_em);
+		var cancel_em = $('<a class="fr no_button cancel" href="#" tabindex="'+(tabindex+1)+'">'+options.dialogCancelText+'</a>').appendTo(buttons_em);
+		
 		// Function to hide the dialog
 		var _hide = function(e) {
 			$(document).unbind('.feedback_dialog');
@@ -192,15 +200,7 @@ jQuery(document).ready(function() {
 			return false;
 		};
 		
-		
-		// Button pane
-		var buttons_em = $('<div class="buttons"></div>').appendTo(dialog_em);
-		
-		// Powered by Planbox
-		$('<a class="powered_by_planbox" href="http://www.planbox.com" target="_blank"><img src="'+document.location.protocol+'//www.planbox.com/img/powered_by_planbox.png" alt="Powered by Planbox" /></a>').appendTo(buttons_em);
-		
 		// Apply button
-		var apply_em = $('<a class="fr button apply" href="#" tabindex="'+(tabindex+2)+'">'+options.dialogSubmitText+'</a>').appendTo(buttons_em);
 		apply_em.click(_submit);
 		apply_em.keydown(function(e) {
 			if (e.keyCode == 13) return _submit(e);
@@ -208,7 +208,6 @@ jQuery(document).ready(function() {
 		});
 		
 		// Cancel button
-		var cancel_em = $('<a class="fr no_button cancel" href="#" tabindex="'+(tabindex+1)+'">'+options.dialogCancelText+'</a>').appendTo(buttons_em);
 		cancel_em.click(_hide);
 		cancel_em.keydown(function(e) {
 			if (e.keyCode == 13) return _hide();
