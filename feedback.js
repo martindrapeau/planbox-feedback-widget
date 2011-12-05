@@ -27,6 +27,7 @@ FeedbackOptions = {
 	dialogFeedbackLabel: 'Your feedback',
 	dialogCancelText: 'Cancel',
 	dialogSubmitText: 'Submit',
+	dialogCloseText: 'Close',
 	
 	// You can prefill the email
 	dialogEmail: '',
@@ -176,6 +177,8 @@ jQuery(document).ready(function() {
 				return false;
 			}
 			
+			apply_em.hide();
+			
 			// Send the feedback using JSONP to avoid cross domain scripting issues
 			$.getJSON(document.location.protocol+'//www.planbox.com/api/feedback?callback=?', {
 				token: options.planboxToken,
@@ -188,11 +191,14 @@ jQuery(document).ready(function() {
 					if (data && data.code) {
 						if (data.code == 'ok') {
 							ajax_em.addClass('ok').html(options.feedbackAjaxSuccess);
+							cancel_em.text(options.dialogCloseText);
 						} else  {
-							ajax_em.addClass('error').html(options.feedbackAjaxError+' '+message);
+							ajax_em.addClass('error').html(options.feedbackAjaxError+' '+data.content);
+							apply_em.show();
 						}
 					} else {
 						ajax_em.addClass('error').html(options.feedbackAjaxError);
+						apply_em.show();
 					}
 				}
 			);
