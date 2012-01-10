@@ -4,8 +4,8 @@
 // Copyright: Planbox Inc. 2011
 // License: MIT License (http://en.wikipedia.org/wiki/MIT_License)
 
-var FeedbackOptions = FeedbackOptions || {};
-jQuery.extend({
+window.FeedbackOptions = window.FeedbackOptions || {};
+jQuery.extend(window.FeedbackOptions, {
 	// You can find your Planbox initiative token on the Manage page
 	// Instructions: http://www.planbox.com/help/user_feedback
 	planboxToken: '<TOKEN>',
@@ -45,13 +45,11 @@ jQuery.extend({
 	feedbackMissingError: 'Please type in feedback',
 	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
 	feedbackAjaxError: 'There was an error.'
-},FeedbackOptions);
+}, window.FeedbackOptions);
 
 jQuery(document).ready(function() {
 	var $ = jQuery;
 	var options = window.FeedbackOptions;
-	
-	window.FeedbackOptions = options;
 	
 	// Create the button and hide it
 	var button_em = $('<div id="feedback_button">').appendTo('body').hide();
