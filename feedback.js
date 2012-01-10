@@ -1,4 +1,9 @@
-// *** PRESET OPTIONS HERE ***
+// Planbox Feedback Widget (http://www.planbox.com/help/user_feedback)
+//
+// Author: Martin Drapeau
+// Copyright: Planbox Inc. 2011
+// License: MIT License (http://en.wikipedia.org/wiki/MIT_License)
+
 var FeedbackOptions = FeedbackOptions || {};
 jQuery.extend({
 	// You can find your Planbox initiative token on the Manage page
@@ -41,11 +46,6 @@ jQuery.extend({
 	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
 	feedbackAjaxError: 'There was an error.'
 },FeedbackOptions);
-
-// *** CHANGE OPTIONS AFTER ***
-// You can access FeedbackOptions after. For example
-// this sets the email input:
-//   window.FeedbackOptions.dialogEmail = 'john@example.com';
 
 jQuery(document).ready(function() {
 	var $ = jQuery;
