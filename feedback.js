@@ -1,5 +1,6 @@
 // *** PRESET OPTIONS HERE ***
-FeedbackOptions = {
+var FeedbackOptions = FeedbackOptions || {};
+jQuery.extend({
 	// You can find your Planbox initiative token on the Manage page
 	// Instructions: http://www.planbox.com/help/user_feedback
 	planboxToken: '<TOKEN>',
@@ -39,7 +40,7 @@ FeedbackOptions = {
 	feedbackMissingError: 'Please type in feedback',
 	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
 	feedbackAjaxError: 'There was an error.'
-};
+},FeedbackOptions);
 
 // *** CHANGE OPTIONS AFTER ***
 // You can access FeedbackOptions after. For example
