@@ -50,6 +50,9 @@ OPTIONS
   
   // The button appears center-left by default. Modify in CSS.
   // It is an image you can modify here.
+  // If you want your own custom button, set showButton to false.
+  // You can then call function FeedbackShow().
+  showButton: true,
   buttonImageSrc: protocol+'://www.planbox.com/img/feedback_button.png',
   buttonImageAlt: 'Feedback',
   buttonTooltip: 'Send us Feedback',
@@ -74,6 +77,10 @@ OPTIONS
   feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
   feedbackAjaxError: 'There was an error.'
 
+FUNCTIONS:
+  // If you have your own custom button, call this function to
+  // open the Feedback dialog.
+  FeedbackShow()
 	
 Author: Martin Drapeau
 Copyright: Planbox Inc. 2011
