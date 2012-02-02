@@ -1,7 +1,7 @@
 // Planbox Feedback Widget (http://www.planbox.com/help/user_feedback)
 //
 // Author: Martin Drapeau
-// Copyright: Planbox Inc. 2011
+// Copyright: Planbox Inc. 2011-2012
 // License: MIT License (http://en.wikipedia.org/wiki/MIT_License)
 
 window.FeedbackOptions = jQuery.extend({
@@ -21,6 +21,9 @@ window.FeedbackOptions = jQuery.extend({
 	
 	// The button appears center-left by default. Modify in CSS.
 	// It is an image you can modify here.
+	// If you want your own custom button, set showButton to false.
+	// You can then call FeedbackShow().
+	showButton: true,
 	buttonImageSrc: document.location.protocol+'//www.planbox.com/img/feedback_button.png',
 	buttonImageAlt: 'Feedback',
 	buttonTooltip: 'Send us Feedback',
@@ -50,23 +53,26 @@ jQuery(document).ready(function() {
 	var $ = jQuery;
 	var options = window.FeedbackOptions;
 	
-	// Create the button and hide it
-	var button_em = $('<div id="feedback_button">').appendTo('body').hide();
-	button_em.attr('title', options.buttonTooltip);
-	$('<img src="'+options.buttonImageSrc+'" alt="Feedback" />').appendTo(button_em);
-	
-	// Extend the button if hovered
-	button_em.hover(
-		function() {
-			$(this).stop().animate({paddingLeft:'5'});
-		},
-		function() {
-			$(this).stop().animate({paddingLeft:'0'});
-		}
-	);
+	var button_em;
+	if (options.showButton) {
+		// Create the button and hide it
+		button_em = $('<div id="feedback_button">').appendTo('body').hide();
+		button_em.attr('title', options.buttonTooltip);
+		$('<img src="'+options.buttonImageSrc+'" alt="Feedback" />').appendTo(button_em);
+		
+		// Extend the button if hovered
+		button_em.hover(
+			function() {
+				$(this).stop().animate({paddingLeft:'5'});
+			},
+			function() {
+				$(this).stop().animate({paddingLeft:'0'});
+			}
+		);
+	}
 	
 	// Show the feedback dialog when the button is clicked
-	button_em.click(function(e) {
+	window.FeedbackShow = function(e) {
 		// Create a dialog
 		var mask_em = $('<div id="feedback_mask">').appendTo('body');
 		var dialog_em = $('<div id="feedback_dialog">').appendTo('body');
@@ -243,8 +249,13 @@ jQuery(document).ready(function() {
 		});
 		
 		return false;
-	});
+	};
 	
-	// Show the button
-	button_em.show();
+	if (button_em) {
+		// Trigger show on button click
+		button_em.click(window.FeedbackShow);
+		
+		// Show the button
+		button_em.show();
+	}
 });
