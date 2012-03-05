@@ -46,7 +46,11 @@ window.FeedbackOptions = jQuery.extend({
 	emailInvalidError: 'Please provide a valid email',
 	feedbackMissingError: 'Please type in feedback',
 	feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
-	feedbackAjaxError: 'There was an error.'
+	feedbackAjaxError: 'There was an error.',
+	
+	// When the user opens the window
+	callback: function(){}
+	
 }, window.FeedbackOptions || {});
 
 jQuery(document).ready(function() {
@@ -176,7 +180,7 @@ jQuery(document).ready(function() {
 					.addClass('error')
 					.html(options.feedbackMissingError)
 					.delay(3000).fadeOut(1000, function() {
-						$(this).empty().show();
+						$(this).html('&nbsp;').removeClass('error ok').show();
 					});
 				return false;
 			}
@@ -247,6 +251,10 @@ jQuery(document).ready(function() {
 			}
 			return true;
 		});
+		
+		if(options.callback){
+			options.callback(content_em);
+		}
 		
 		return false;
 	};
