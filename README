@@ -75,7 +75,10 @@ OPTIONS
   emailInvalidError: 'Please provide a valid email',
   feedbackMissingError: 'Please type in feedback',
   feedbackAjaxSuccess: 'We have received your feedback. Thank you!',
-  feedbackAjaxError: 'There was an error.'
+  feedbackAjaxError: 'There was an error.',
+
+  // When the user opens the window
+  callback: function(){}
 
 FUNCTIONS:
   // If you have your own custom button, call this function to
