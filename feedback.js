@@ -49,6 +49,13 @@ window.FeedbackOptions = jQuery.extend({
 	feedbackAjaxError: 'There was an error.',
 	
 	// When the user opens the window
+	// The dialog element is passed as argument
+	onshow: function(){},
+	
+	// Deprecated...
+	
+	// When the user opens the window
+	// The jQuery content element is passed as argument
 	callback: function(){}
 	
 }, window.FeedbackOptions || {});
@@ -123,11 +130,11 @@ jQuery(document).ready(function() {
 		var content_em = $('<div class="content"></div>').appendTo(dialog_em);
 		
 		// Email input
-		$('<label>'+options.dialogEmailLabel+'</label>').appendTo(content_em);
+		$('<label class="email">'+options.dialogEmailLabel+'</label>').appendTo(content_em);
 		var email_em = $('<input class="email" type="text" tabindex="'+(tabindex++)+'" value="'+options.dialogEmail+'"/>').appendTo(content_em);
 		
 		// Feedback textarea
-		$('<label>'+options.dialogFeedbackLabel+'</label>').appendTo(content_em);
+		$('<label class="feedback">'+options.dialogFeedbackLabel+'</label>').appendTo(content_em);
 		var feedback_em = $('<textarea class="feedback" tabindex="'+(tabindex++)+'"></textarea>').appendTo(content_em);
 		
 		// AJAX message
@@ -252,9 +259,13 @@ jQuery(document).ready(function() {
 			return true;
 		});
 		
-		if(options.callback){
+		// Deprecated. Replaced by onshow
+		if (options.callback)
 			options.callback(content_em);
-		}
+		
+		// Trigger the onshow callback
+		if (options.onshow)
+			options.onshow(dialog_em[0]);
 		
 		return false;
 	};

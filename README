@@ -78,6 +78,13 @@ OPTIONS
   feedbackAjaxError: 'There was an error.',
 
   // When the user opens the window
+  // The dialog element is passed as argument
+  onshow: function(){},
+
+  // Deprecated...
+
+  // When the user opens the window
+  // The jQuery content element is passed as argument
   callback: function(){}
 
 FUNCTIONS:
