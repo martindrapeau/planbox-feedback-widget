@@ -51,6 +51,10 @@ window.FeedbackOptions = jQuery.extend({
 	// When the user opens the window
 	// The dialog element is passed as argument
 	onshow: function(){},
+
+  // When the user closes the window, but before the window is destroyed
+  // The dialog element is passed as argument
+  beforehide: function(){},
 	
 	// Deprecated...
 	
@@ -151,6 +155,9 @@ jQuery(document).ready(function() {
 		
 		// Function to hide the dialog
 		var _hide = function(e) {
+      // Trigger the beforehide callback
+      if (options.beforehide)
+        options.beforehide(dialog_em[0]);
 			$(document).unbind('.feedback_dialog');
 			dialog_em.remove();
 			mask_em.remove();

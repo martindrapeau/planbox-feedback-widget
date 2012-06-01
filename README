@@ -81,6 +81,10 @@ OPTIONS
   // The dialog element is passed as argument
   onshow: function(){},
 
+  // When the user closes the window, but before the window is destroyed.
+  // The dialog element is passed as argument
+  beforehide: function(){},
+
   // Deprecated...
 
   // When the user opens the window
